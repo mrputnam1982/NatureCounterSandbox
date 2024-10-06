@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "738852702774",
+    "project_id": "naturecounter-918e3",
+    "storage_bucket": "naturecounter-918e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738852702774:android:845476062bb0b0faa22697",
+        "android_client_info": {
+          "package_name": "com.naturecounter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWfgn_taEaiwXeCMsFWPfLAbzKli0xags"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

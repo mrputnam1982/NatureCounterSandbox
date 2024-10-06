@@ -1,0 +1,15 @@
+export const RADIUS = 120;
+export const COLOR_BG = '#ffffff';
+export const THEME_GREEN = '#459F5E';
+export const THEME_LIGHT_GREEN = '#DCEFE0';
+export const THEME_DARK_GREEN = '#136b55';
+export const MEDIUM_GREY = '#d3d3d3';
+export const DARK_GREY = 'rgba(0, 0, 0, 0.5)';
+export const BOULDER_GRAY = '#707070';
+export const LIGHT_GREY = '#A4A9AE';
+export const BLACK = '#000';
+export const COLOR_FG = THEME_GREEN;
+export const PI = 3.14;
+export const SAGE_GREEN = '#DCEFE0';
+export const THEME_EVERGREEN = '#459F5E';
+export const THEME_RED = '#E44C4C';
