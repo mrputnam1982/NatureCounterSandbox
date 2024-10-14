@@ -454,15 +454,15 @@ const Tabs = ({logout, userName, resetOnboarding}) => {
         tabBarIcon: ({focused}) => {
           var color = focused ? THEME_GREEN : LIGHT_GREY;
           switch (route.name) {
-            case 'HomeScreens':
+            case 'Home':
               return <NavHomeIcon style={{color: color}} />;
-            case 'MapScreens':
+            case 'Map':
               return <NavDiscoverIcon style={{color: color}} />;
-            case 'ArticlesScreen':
+            case 'Articles':
               return <NavArticlesIcon style={{color: color}} />;
-            case 'ProgressScreen':
+            case 'Progress':
               return <NavProgressIcon style={{color: color}} />;
-            case 'JournalScreens':
+            case 'Journal':
               return <NavJournalIcon style={{color: color}} />;
             default:
               return <NavHomeIcon style={{color: color}} />;
@@ -484,7 +484,7 @@ const Tabs = ({logout, userName, resetOnboarding}) => {
         inactiveTintColor: LIGHT_GREY,
       }}>
       <Tab.Screen
-        name="HomeScreens"
+        name="Home"
         options={{
           headerShown: false
         }}
@@ -505,22 +505,22 @@ const Tabs = ({logout, userName, resetOnboarding}) => {
         )}
       </Tab.Screen>
       <Tab.Screen
-        name="MapScreens"
+        name="Map"
         component={MapNavigator}
         options={{headerShown: false}}
       />
       <Tab.Screen
-        name="ArticlesScreen"
+        name="Articles"
         component={ArticlesNavigator}
         options={{headerShown: false}}
       />
       <Tab.Screen	
-        name="ProgressScreen"	
+        name="Progress"	
         component={ReportNavigator}	
         options={{headerShown: false}}	
       />	
       <Tab.Screen	
-        name="JournalScreens"
+        name="Journal"
         component={JournalNavigator}
         options={{headerShown: false}}
         initialParams={{
@@ -535,7 +535,7 @@ const Tabs = ({logout, userName, resetOnboarding}) => {
         // })}
       />
       <Tab.Screen	
-        name="ProfileScreens"	
+        name="Profile"	
         options={{
           headerShown: false, 
           tabBarButton: () => null,
