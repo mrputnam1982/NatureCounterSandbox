@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
-import Animated, { interpolate, multiply, Extrapolate, lessThan } from "react-native-reanimated";
+import { View, StyleSheet, Dimensions, Platform } from "react-native";
+import Animated, { interpolate, multiply, lessThan } from "react-native-reanimated";
 import HalfCircle from "./HalfCircle";
 import { PI, RADIUS } from "../Utilities/Constants";
-import { transformOrigin } from 'react-native-redash/src/v1';
+// import { transformOrigin } from 'react-native-redash/src/v1';
 import Svg, { Circle, Path } from 'react-native-svg';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
@@ -17,7 +17,7 @@ import styled from 'styled-components/native';
   `;
 
 const CircularProgress = ({ percentElapsed, bg, fg }: CircularProgressProps) => {
-  //const radius = 40;
+  // const radius = 40;
   const radius = Platform.OS === 'android' ? 40 : 47;
   const arcLength = Math.round(2 * PI * radius);
 

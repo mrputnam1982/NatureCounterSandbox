@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Platform } from 'react-native';
 import SvgImg from '../../../../assets/icons/Journal/TextField-Error.svg';
 import LocationErrorModal from './LocationErrorModal';
 

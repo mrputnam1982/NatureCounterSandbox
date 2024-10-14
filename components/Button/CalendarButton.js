@@ -164,6 +164,7 @@ const CalendarButton = props => {
           dateRange.endDate,
         ).format('MMM DD')}`;
   return (
+  //  <View><Text>CalendarButton</Text></View>
     <SafeAreaView>
       <TouchableOpacity
         disabled={disabled}

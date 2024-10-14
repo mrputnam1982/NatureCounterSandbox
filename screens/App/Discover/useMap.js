@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { PermissionsAndroid } from 'react-native';
+import { PermissionsAndroid, Platform } from 'react-native';
 import { PERMISSIONS, check as iosCheck, request as iosRequest } from 'react-native-permissions';
 import Geolocation from 'react-native-geolocation-service';
 

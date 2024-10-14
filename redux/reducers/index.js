@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux-immutable';
 //import { firebaseReducer } from "react-redux-firebase";
+import { user, UserDetail, UserActivity } from "./userReducer";
 import Articles from './articleReducer';
 import Benefits from './benefitReducer';
 import UserGoal from './goalReducer';
@@ -11,7 +12,9 @@ import UserProfile from './userProfileReducer';
 //import user from './userReducer';
 
 const rootReducer = combineReducers({
+    user,
     snackbar,
+    UserDetails: UserDetail,
     UserProfiles: UserProfile,
     ArticleData: Articles,
     BenefitData: Benefits,

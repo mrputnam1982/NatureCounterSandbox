@@ -9,22 +9,25 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  Platform
 } from 'react-native';
 import Toast from 'react-native-simple-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/native';
+import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import Full_Logo_Horizontal from '../../assets/icons/Full_Logo_Horizontal.svg';
 import { Profile } from '../../assets/icons/Home';
-import { CalendarButton } from '../../components/Button';
+import CalendarButton from '../../components/Button/CalendarButton';
 import EntryHistory from '../../components/Journal/EntryHistory';
 import CounterSection from '../../components/Section/CounterSection';
 import QuickLinksSection from '../../components/Section/QuickLinksSection';
 import WeeklyChartSection from '../../components/Section/WeeklyChartSection';
 import { THEME_LIGHT_GREEN } from '../../components/Utilities/Constants';
 import { resetDataService } from '../../components/Utilities/DataResetServices';
-import { fetchJournalEntriesByDate as fetchWeeklyEntries } from '../../components/Utilities/JournalFunctions';
+import { fetchJournalEntriesByDate as fetchWeeklyEntries } from 
+  '../../components/Utilities/JournalFunctions';
 import removeUser from '../../helpers/removeUser';
 import userState from '../../helpers/userState';
 import { fetchJournalEntriesByDate } from '../../redux/actions/journalEntryActions';
@@ -49,6 +52,7 @@ const HomeScreen = ({
   logout,
   resetOnboarding,
 }) => {
+  //return(<View><Text>Home Screen Reached</Text></View>)
   const isStateLoaded = route.params?.isStateLoaded || false;
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [passedLimit, setLimit] = useState(120);
@@ -191,18 +195,8 @@ const HomeScreen = ({
   const updateEntries = () => {
     getEntries();
   }
-  useEffect(async () => {
-    const deleted = userState.getDeleted();
-    // begin delete account if user has delete flag set
-    if (deleted) {
-      setIsDeleting(true);
-      try {
-        await deleteAccount()
-        Toast.show('Account deleted successfully.');
-      } catch (error) {
-        Toast.show('Account deletion failed.');
-      }
-    }
+  useEffect(()=> {
+    deleteAccountAsync();
   }, []);
 
   useEffect(() => {
@@ -220,6 +214,19 @@ const HomeScreen = ({
     //   userProfile ? userProfile.name : null,
     // );
   }, [userdetails, benefits, articles, userisLoading]);
+  const deleteAccountAsync = async() => {
+    const deleted = userState.getDeleted();
+    // begin delete account if user has delete flag set
+    if (deleted) {
+      setIsDeleting(true);
+      try {
+        await deleteAccount()
+        Toast.show('Account deleted successfully.');
+      } catch (error) {
+        Toast.show('Account deletion failed.');
+      }
+    }
+  }
   /**
    * this is a toggle
    * if counterRunning is true, then set it to false to stop the timer
@@ -431,6 +438,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         alignItems: 'center',
         marginTop: 30,
+        zIndex: 2,
   
       },
       ios: {

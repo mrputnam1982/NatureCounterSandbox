@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, ImageBackground, View } from 'react-native';
+import { Dimensions, ImageBackground, View, Platform } from 'react-native';
 import { Row } from 'react-native-easy-grid';
 import QuickLinkCard from '../Card/QuickLinkCard';
 

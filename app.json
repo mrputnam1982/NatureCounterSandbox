@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Test",
-    "slug": "Test",
+    "name": "NatureCounter",
+    "slug": "NatureCounter",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,7 +20,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.test"
+      "package": "com.naturecounter"
     },
     "web": {
       "favicon": "./assets/favicon.png"

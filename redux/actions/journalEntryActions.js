@@ -57,11 +57,12 @@ export function fetchJournalEntriesByDate(startDate, endDate, origin) {
 export function postJournalEntry(firebaseId, location, start_time, end_time) {
   return async function action(dispatch) {
     const header = await createToken();
+    // console.log("POST header:", header);
     //const userId = uid + calenderFun.UTCToLocalDate(startDate);
-    const uid = userState.getUserStateId();
+    // const uid = userState.getUserStateId();
     const journalEntryDetail = {
       location,
-      uid,
+      firebaseId,
       start_time,
       end_time,
     };

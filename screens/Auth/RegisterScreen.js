@@ -56,6 +56,7 @@ const RegisterScreen = ({navigation}) => {
 
     try {
       try {
+        console.log("Attempting to create user: ",email, password);
         await auth().createUserWithEmailAndPassword(email, password);
         await auth().currentUser.updateProfile({displayName: name});
       } catch (err) {

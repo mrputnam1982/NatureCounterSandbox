@@ -19,6 +19,7 @@ import { Map } from 'immutable';
 import {View, Text} from 'react-native'
 import configure from './redux/store'
 import rootReducer from "./redux/reducers";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 const initialState = Map({});
 const store = configure(initialState);
 
@@ -29,7 +30,9 @@ export default function App() {
   return (
   // <View><Text>Entry point reached</Text></View>
     <Provider store={store}>
-     <AppNC/>
+     <GestureHandlerRootView>
+      <AppNC/>
+     </GestureHandlerRootView>
     </Provider>
   )
   // return <Application/>

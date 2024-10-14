@@ -18,8 +18,8 @@ import {
   StopInactive
 } from '../../assets/icons/Home';
 import { postJournalEntry } from '../../redux/actions/journalEntryActions';
-import { Button } from '../Button';
-import { Timer } from '../Counter';
+import Button from '../Button/Button';
+import Timer from '../Counter/Timer';
 import styles from './styles.js';
 
 const StyledButtonRow = styled.View`
@@ -75,7 +75,6 @@ const CounterSection = ({
   const [isStopped, setIsStopped] = useState(false);
   const [isFirstEntry, setIsFirstEntry] = useState(false);
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     let interval;

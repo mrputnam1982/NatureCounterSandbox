@@ -1,4 +1,4 @@
-package com.test
+package com.naturecounter
 
 import android.os.Build
 import android.os.Bundle

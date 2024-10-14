@@ -15,7 +15,20 @@ export default function configure(initialState) {
   
   middlewares.push(createLogger({ collapsed: true }));
 
-	return configureStore({reducer: rootReducer},initialState, composeWithDevTools(applyMiddleware( ...middlewares)));
-//     return configureAppStore(initialState);
-  // return createStore(reducer, composeWithDevTools(applyMiddleware( ...middlewares)));
+	//return configureStore({reducer: rootReducer},initialState, composeWithDevTools(applyMiddleware( ...middlewares)));
+  return configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: ["actionWithFilePayload"],
+          ignoredPaths: ["stateWithFile"],
+        },
+      }),
+    preloadedState: initialState,
+    }
+  );
+  //     return configureAppStore(initialState);
+
+// return createStore(reducer, composeWithDevTools(applyMiddleware( ...middlewares)));
 }

@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View, Platform } from 'react-native';
 import { useSelector } from 'react-redux';
 import * as activeIcons from '../Button/activeIcons.js';
 import * as inactiveIcons from '../Button/inactiveIcons.js';

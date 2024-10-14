@@ -1,4 +1,4 @@
-package com.test
+package com.naturecounter
 
 import android.app.Application
 import android.content.res.Configuration

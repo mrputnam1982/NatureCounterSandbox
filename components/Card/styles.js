@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { DARK_GREY, THEME_GREEN } from '../Utilities/Constants';
 
 const styles = StyleSheet.create({

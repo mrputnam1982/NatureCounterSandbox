@@ -12,14 +12,13 @@ import { bindActionCreators } from 'redux';
 import { COLOR_BG, THEME_GREEN, THEME_LIGHT_GREEN } from './components/Utilities/Constants';
 import Snackbar from './components/Utilities/Snackbar';
 import * as userActions from './redux/actions/userActions';
-import {} from './screens'
 import LoginScreen from './screens/Auth/LoginScreen';
 import newPasswordScreen from './screens/Auth/newPasswordScreen';
 import resetPasswordScreen from './screens/Auth/resetPasswordScreen';
 import LoadingScreen from './screens/Auth/LoadingScreen';
 import RegisterScreen from './screens/Auth/RegisterScreen';
 
-// import OnboardingScreen from './screens/App/OnboardingScreen';
+import OnboardingScreen from './screens/App/OnboardingScreen';
 // import {
 //   LoadingScreen,
   // LoginScreen,
@@ -28,7 +27,7 @@ import RegisterScreen from './screens/Auth/RegisterScreen';
 //   newPasswordScreen,
 //   resetPasswordScreen
 // } from './screens';
-// import MainScreens from './screens/App/MainScreens';
+import MainScreens from './screens/App/MainScreens';
 import {EventProvider} from 'react-native-outside-press';
 
 const USER_ONBOARDED = '@onboarded';
@@ -39,7 +38,7 @@ const AppNC = (props) => {
   const { email, emailVerified, userActions, displayName, uid } = props;
 
   const navigationRef = useRef();
-  const [onboarding, setOnboarding] = useState(null);
+  const [onboarding, setOnboarding] = useState(false);
   const [initializing, setInitializing] = useState(true);
   const [oobCode, setOOBCode] = useState('');
 
@@ -75,18 +74,19 @@ const AppNC = (props) => {
   //   }
   // }, [oobCode]);
 
-  // useEffect(() => {
-  //   AsyncStorage.getItem(USER_ONBOARDED).then(value => {
-  //     if (value === null) {
-  //       AsyncStorage.setItem(USER_ONBOARDED, '1');
-  //       setOnboarding(true);
-  //     } else {
-  //       setOnboarding(false);
-  //     }
-  //     // just for testing
-  //     // AsyncStorage.removeItem(USER_ONBOARDED);
-  //   });
-  // }, []);
+  useEffect(() => {
+    // setOnboarding(true);
+    AsyncStorage.getItem(USER_ONBOARDED).then(value => {
+      if (value === null) {
+        AsyncStorage.setItem(USER_ONBOARDED, '1');
+        setOnboarding(true);
+      } else {
+        setOnboarding(false);
+      }
+      // just for testing
+      // AsyncStorage.removeItem(USER_ONBOARDED);
+    });
+  }, []);
 
   const resetOnboarding = () => {
     try {
@@ -148,7 +148,7 @@ const AppNC = (props) => {
   if (initializing || onboarding === null) return <LoadingScreen />;
 
   if (onboarding) {
-    // return <OnboardingScreen onEnd={() => setOnboarding(false)} />;
+    return <OnboardingScreen onEnd={() => setOnboarding(false)} />;
   }
 
   if (!email) {
@@ -174,26 +174,28 @@ const AppNC = (props) => {
   /**
    * Added  Paper Provider to handle Select/Drop down component
    */
-  return ( <View><Text>regular app flow</Text></View>)
-  //   <EventProvider>
-  //   <PaperProvider theme={paperTheme}>
-  //     <MainScreens
-  //       logout={handleLogout}
-  //       // loginSecurity={LoginSecurity1}
-  //       user={email}
-  //       emailVerified={emailVerified}
-  //       userName={displayName}
-  //       resetOnboarding={resetOnboarding}
-  //     />
-  //     <Snackbar
-  //       message={message}
-  //       visible={visible}
-  //     />
-  //   </PaperProvider>
-  //   </EventProvider>
-  // );
-} ;
-  }
+  // return ( <View><Text>regular app flow</Text></View>)
+    return(
+      <EventProvider>
+      <PaperProvider theme={paperTheme}>
+         {/* <View><Text>Main Screen entry point</Text></View> */}
+        <MainScreens
+          logout={handleLogout}
+          // loginSecurity={LoginSecurity1}
+          user={email}
+          emailVerified={emailVerified}
+          userName={displayName}
+          resetOnboarding={resetOnboarding}
+        />
+        <Snackbar
+          message={message}
+          visible={visible}
+        />
+      </PaperProvider>
+      </EventProvider>
+    );
+  } ;
+}
 
 export default connect(
   state => ({

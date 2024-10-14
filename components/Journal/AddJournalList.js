@@ -360,6 +360,9 @@ const AddJournalList = ({editMode, entries, dateSelected, origin}) => {
     // isLoaded(true); // TODO: Is a re-render needed here?
   }, [dateSelected]);
   useEffect(() => {
+    setSaveDisabled(false);
+  },[])
+  useEffect(() => {
     setPassedEntries(entries);
   }, [entries]);
   const addAnotherEntry = () => {
@@ -435,7 +438,7 @@ const AddJournalList = ({editMode, entries, dateSelected, origin}) => {
 
       const filteredEntries = await fetchJournalEntriesByDate(prev_day, next_day);
       resolve(filteredEntries);
-      if(errmsg) Toast.show("Network error");
+      if(errmsg && filteredEntries) Toast.show("Network error");
   });
 
   const checkOverlap = (a_start, a_end, b_start, b_end) => {
@@ -530,7 +533,7 @@ const AddJournalList = ({editMode, entries, dateSelected, origin}) => {
     });
 
     const filteredEntries = await getEntries();
-
+    console.log("Filtered Entries:", filteredEntries)
     // Filter out the current entries that are not changed
     if(editMode && !alertTriggered){
       newEntries = newEntries.filter(entry => {
@@ -602,6 +605,7 @@ const AddJournalList = ({editMode, entries, dateSelected, origin}) => {
     }
     
     //if no overlaps in current entries to write to db
+    // console.log("Alert Triggered:", alertTriggered);
     if (!alertTriggered) {
       for (const entry of newEntries) {
         if (editMode) {
@@ -635,13 +639,15 @@ const AddJournalList = ({editMode, entries, dateSelected, origin}) => {
             );
           }
         } else {// Add Entry
+          console.log("Add New Entry")
+          // console.log("userId:", userId);
           dispatch(
             postJournalEntry(
               userId,
               entry.location,
               entry.startTime,
               entry.endTime,
-            ),
+            )
           );
         }
       }

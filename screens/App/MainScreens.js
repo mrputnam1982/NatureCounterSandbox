@@ -55,7 +55,7 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 
-// const customFont = require('../../assets/fonts/Roboto-Regular.ttf');
+// // const customFont = require('../../assets/fonts/Roboto-Regular.ttf');
 
 const getUserDetails = () => {
   const userdetails = useSelector(
@@ -81,6 +81,7 @@ const getBenefits = () => {
   return benefits;
 };
 
+
 function HomeNavigator({symptom, userisLoading, usererrmsg, logout, resetOnboarding}) {
   const userdetails = getUserDetails();
   const articles = getArticles();
@@ -97,7 +98,8 @@ return (
         headerBackTitleVisible: false,
         headerStyle: {backgroundColor: THEME_LIGHT_GREEN, borderBottomWidth: 0},
       })}
-      headerMode="float">
+      // headerMode="float"
+      >
       <Stack.Screen
         name="HomeScreen"
         options={{
@@ -484,7 +486,7 @@ const Tabs = ({logout, userName, resetOnboarding}) => {
       <Tab.Screen
         name="HomeScreens"
         options={{
-          title: 'Home',
+          headerShown: false
         }}
         // symptom={symptom}
         articles={articles}
@@ -505,22 +507,22 @@ const Tabs = ({logout, userName, resetOnboarding}) => {
       <Tab.Screen
         name="MapScreens"
         component={MapNavigator}
-        options={{title: 'Explore'}}
+        options={{headerShown: false}}
       />
       <Tab.Screen
         name="ArticlesScreen"
         component={ArticlesNavigator}
-        options={{title: 'Articles'}}
+        options={{headerShown: false}}
       />
       <Tab.Screen	
         name="ProgressScreen"	
         component={ReportNavigator}	
-        options={{title: 'Progress'}}	
+        options={{headerShown: false}}	
       />	
       <Tab.Screen	
         name="JournalScreens"
         component={JournalNavigator}
-        options={{title: 'Journal'}}
+        options={{headerShown: false}}
         initialParams={{
           title: "Journal History",
           dateFilter: {startDate: new Date(), endDate: new Date()},
@@ -535,7 +537,7 @@ const Tabs = ({logout, userName, resetOnboarding}) => {
       <Tab.Screen	
         name="ProfileScreens"	
         options={{
-          title: 'Profile', 
+          headerShown: false, 
           tabBarButton: () => null,
           tabBarVisible: false, // if you don't want to see the tab bar
         }}
@@ -552,8 +554,8 @@ export default function MainScreens({logout, userName, notification, resetOnboar
     error: userError,
     updateUser,
   } = useCurrentUser();
-
-  const userInfo = useMemo(() => {
+  
+   const userInfo = useMemo(() => {
     return {
       user,
       userLoading,
@@ -571,11 +573,14 @@ export default function MainScreens({logout, userName, notification, resetOnboar
       <View style={styles.maincontainer}>
         <NavigationContainer>
           <Drawer.Navigator
+            screenOptions={{
+              headerShown: false
+            }}
             drawerStyle={{
               width: 312,
               padding: 16,
             }}
-            useLegacyImplementation
+            useLegacyImplementation={false}
             initialRouteName="TabNavigator"
             drawerContent={props => (
               <DrawerView
